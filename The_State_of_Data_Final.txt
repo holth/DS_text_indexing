@@ -1,0 +1,105 @@
+The State of Data
+Bipin C. Desai
+Concordia University
+Montreal, QC, H3G 1M8
+Canada
+1 514 848 2424
+BipinC.Desai@concordia.ca
+
+Abstract
+We are currently experiencing an extraordinary acceleration in the
+growth rate of digital data. One of the reasons for this increase is
+the digitization of virtually all communications and records. This
+exponential growth is evidenced by the fact that the sum total of
+data produced in the last year or two would exceed all data that
+existed in digital form prior to that time. Just as the Industrial
+Revolution created an entirely new urban way of life for what is
+now more than half of the population of the planet, the Big Data
+revolution will dramatically alter the ways in which we interact,
+not only with each other but with all of the institutions which
+mediate our lives. Our age has come to be known as the era of Big
+Data and we are only beginning to understand its opportunities
+and challenges. This position paper underlines some of these
+emerging promises and threats, as well as their implications for
+researchers and scientists across the database community.
+
+Categories and Subject Descriptors
+K.4.1 [Public Policy Issues]
+privacy,
+regulation,
+transborder data flow, use/abuse of
+General Terms
+Design, Economics, Reliability, Experimentation, Security,
+Human Factors, Legal Aspects.
+
+Keywords
+data, Big Data, data mining, privacy, security, social media and
+networking, search engines
+
+1. Introduction
+Our time has come to be known as the age of Big Data [1]. As
+with the birth of any new era, the inception of this new age is of
+major cultural, scientific, political and economic significance. It is
+this cultural or anthropological element that renders a reflection
+on digital computing necessary, not only for the specialist but also
+for the (now largely wirelessly) wired world as such. This cultural
+milestone is, however, of particular interest to engineers insofar as
+this revolution, like many of those that preceded it, has been made
+possible by, among other important elements, the no doubt
+essential ingredient of their ingenuity.
+
+Therefore, in order to understand this new age in terms of some of
+its origins, it is useful to briefly recall the history of data storage
+From here on, this paper will examine more closely some specific
+consequences of this new age which bear most directly on the
+theory and practice of the data engineer, namely, the proliferation
+of data and the novel possibilities it affords.
+
+2. How Data Got Big
+
+Though humans have recorded data in various forms over many
+centuries such recording has, until recently, been stored in an
+analog format [2]. With the invention of the magnetic tape in the
+mid 1940s, the recording of and manipulation of data became
+possible since it allowed for the storing of analog and later digital
+data accessible in sequential mode. Magnetic tape was followed
+by magnetic drums and thence by magnetic disks with greater and
+greater data storage capacity and faster and faster access time.
+These devices made it possible to access vast swathes of data in
+random order, hence allowing storing, accessing and processing of
+larger and larger amounts of data.
+
+The electro-mechanical digital computers which started appearing
+around late 1930’s were quickly replaced by electronic devices
+with integrated circuits. Increased density of the circuitry was
+achieved by higher and higher levels of miniaturization and
+integration resulting in faster and smaller digital computer.
+[http://en.wikipedia.org/wiki/Computer] This set the stage for
+today’s concentration of processing power and data, making it
+possible to quickly process immense amounts of data gathered
+from multiple sources, the so-called Big Data, in a fraction of a
+second and derive interesting results.
+
+Over the past half century database technologies have continued
+to evolve, from the first one reported to be IDS released by GE
+running on GE235 computers [http://en.wikipedia.org/wiki/
+Database]. Along with the advances in hardware, a number of data
+models have been developed. The first was the hierarchical model
+with IBM’s IMS, most prominently and widely used in the 1960s
+and beyond. The network model was proposed as a replacement,
+followed by the relational model, which, though it appeared in
+1970s, was slow to catch on, becoming dominant only in the last
+decade of the twentieth century. It is now the most common
+model for new applications. The object model which was
+introduced in the 80s has not caught on for database application.
+Instead, the use of the object-relation model has bridged the
+mismatch between many existing application using the relational
+model and new needs where the object model is desired.
+However, the genesis of Big Data truly began with the evolution
+of the world wide web, which at its inception, was only one
+application of the internet among many. It is with the widespread
+adoption of the web that web-based applications began to
+proliferate, and it is principally these that have, in just over a
+decade, created the avalanche of data which is driving current
+economic and social phenomena and the novel issues which
+surround them.
