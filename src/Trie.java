@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+
 /**
  * Class implementing a Trie
  */
@@ -32,6 +33,33 @@ public class Trie
 	}
 	
 
+	public ArrayList<Integer> search(String kw)
+	{
+		Node currentNode = root;
+		for(int i = 0; i < kw.length(); i++)
+		{
+			char currentChar = kw.charAt(i);
+			boolean found = false;
+			for(int j = 0; j < currentNode.children.size(); j++)
+			{
+				if(currentNode.children.get(j).element == currentChar)
+				{
+					currentNode = currentNode.children.get(j);
+					found = true;
+					break;
+				}
+					
+			}
+			if(!found)
+				return null;
+		}
+		if(!currentNode.isEnd)
+			return null;
+		else
+			return currentNode.pars;
+			
+	}
+	
 	
 	class Node {
 		char element;
