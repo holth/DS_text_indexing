@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 
@@ -61,14 +62,34 @@ public class Trie
 	
 	public ArrayList<Integer> handle2Keywords(String kws)
 	{
-		String[] list = kws.split(" ");
+		String[] list = cleanList(kws.split(" "));
+		
 		ArrayList<Integer> para1 = search(list[0]);
 		ArrayList<Integer> para2 = search(list[2]);
 	
 		if(list[1].compareTo("and") == 0)
 			return and(para1, para2);
-		else
+		else if(list[1].compareTo("or") == 0)
 			return or(para1, para2);
+		else
+		{
+			System.out.println("!!!!!!Error: Invalid input!!!!!!!");
+			return null;
+		}
+	}
+	
+	private String[] cleanList(String[] old)
+	{
+		ArrayList<String> temp = new ArrayList<String>(Arrays.asList(old));
+		//temp.removeAll(Collections.singleton(null));
+		temp.removeAll(Collections.singleton(""));
+		
+		String[] clean = new String[temp.size()];
+		for(int i = 0; i < clean.length; i++)
+		{
+			clean[i] = temp.get(i);
+		}
+		return clean;
 	}
 	
 	public ArrayList<Integer> and(ArrayList<Integer> p1, ArrayList<Integer> p2)
@@ -121,41 +142,56 @@ public class Trie
 		int num = kws.split("[\\(||\\)]").length;
 		if(num == 1)									//patterns like "good and bad or nice"
 		{
-			String[] list = kws.split(" ");
+			String[] list = cleanList(kws.split(" "));
 			
 			para1 = handle2Keywords(list[0] + " " + list[1] + " " + list[2]);
 			para2 = search(list[4]);
 			
 			if(list[3].compareTo("and") == 0)
 				return and(para1, para2);
-			else
+			else if(list[3].compareTo("or") == 0)
 				return or(para1, para2);
+			else
+			{
+				System.out.println("!!!!!!Error: Invalid input!!!!!!!");
+				return null;
+			}
 		}
 		else if(num == 2)								//patterns like "good and (bad or nice)"
 		{
 			String[] list = kws.split("[\\(||\\)]");		//list pattern [good and , bad or nice]
 			
 			para2 = handle2Keywords(list[1]);
-			String[] newList = list[0].split(" ");
+			String[] newList = cleanList(list[0].split(" "));
 			para1 = search(newList[0]);
 			
 			if(newList[1].compareTo("and") == 0)
 				return and(para1, para2);
-			else
+			else if(newList[1].compareTo("or") == 0)
 				return or(para1, para2);
+			else
+			{
+				System.out.println("!!!!!!Error: Invalid input!!!!!!!");
+				return null;
+			}
 		}
 		else											//patterns like "(good and bad) or nice"
 		{
 			String[] list = kws.split("[\\(||\\)]");		//list pattern [, good and bad,  or nice]
 			
 			para1 = handle2Keywords(list[1]);
-			String[] newList = list[2].split(" ");
+			String[] newList = cleanList(list[2].split(" "));
 			para2 = search(newList[2]);
 			
 			if(newList[1].compareTo("and") == 0)
 				return and(para1, para2);
-			else
+			else if(newList[1].compareTo("or") == 0)
 				return or(para1, para2);
+			else
+			{
+				System.out.println("!!!!!!Error: Invalid input!!!!!!!");
+				return null;
+			}
 		}
 		
 	}
