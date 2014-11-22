@@ -12,7 +12,7 @@ public class Program {
 		
 		Scanner reader = new Scanner(System.in);
 		
-		System.out.println("Enter the file name (e.g. \"The_State_of_Data_Final.txt\"):");
+		System.out.print("Enter the file name (e.g. \"The_State_of_Data_Final.txt\"): ");
 		
 		File fileName = new File(reader.next());
 
@@ -35,16 +35,31 @@ public class Program {
 			}
 		}
 		
+
+		reader.nextLine();
 		ArrayList<Integer> paragraphs;
 		while(true)
 		{
 			System.out.println("\n-------------------------");
-			System.out.println("Enter keyword (press \"q\" to quit):");
+			System.out.print("Enter keyword (press \"q\" to quit): ");
 			
-			String keyword = reader.next().toLowerCase();
+			String keyword = reader.nextLine().toLowerCase();
 			if(keyword.equals("q"))
 				break;
-			paragraphs = trie.search(keyword);
+			
+			int num = keyword.split("and | or").length;
+			if(num == 1)								//one keyword
+				paragraphs = trie.search(keyword);
+			else if(num == 2)							//two keywords
+			{
+				paragraphs = trie.handle2Keywords(keyword);
+			}
+			else										//three keywords
+			{
+				paragraphs = trie.handle3Keywords(keyword);
+			}
+			
+			
 			if(paragraphs != null)
 			{
 				System.out.println(keyword + " found at:");;
@@ -54,11 +69,9 @@ public class Program {
 			else
 				System.out.println(keyword + " NOT found!");
 		}
+		
 		reader.close();
-		
 		System.out.println("Program ends!");
-		
-		
 	}
 
 }
