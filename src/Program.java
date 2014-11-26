@@ -12,7 +12,13 @@ public class Program {
 		
 		Scanner reader = new Scanner(System.in);
 		
-		System.out.print("Enter the file name (e.g. \"The_State_of_Data_Final.txt\"): ");
+		System.out.print("Program starts!"
+				+ "\n"
+				+ "\nThis program index the keywords of a text file to the"
+				+ "\ncorresponding paragraph number."
+				+ "\n"
+				+ "\nTo begin, put the text file in the root folder and"
+				+ "\nenter the file name (e.g. \"The_State_of_Data_Final.txt\"): ");
 		
 		File fileName = new File(reader.next());
 
@@ -21,9 +27,10 @@ public class Program {
 		ArrayList<LinkedList<String>> index = new ArrayList<LinkedList<String>>();
 		
 		index = indexList.buildIndex(fileName);
-		
 		indexList.printIndex(index);
+		System.out.println("\n...building index...complete!");
 		
+		System.out.print("...building trie...");
 		Trie trie = new Trie();
 		for(int i = 0; i <= index.size() - 1; i++)
 		{
@@ -34,7 +41,7 @@ public class Program {
 				j++;
 			}
 		}
-		
+		System.out.print("complete!");
 
 		reader.nextLine();
 		ArrayList<Integer> paragraphs;
@@ -62,7 +69,7 @@ public class Program {
 			
 			if(paragraphs != null)
 			{
-				System.out.println(keyword + " found at:");;
+				System.out.println(keyword + " found in:");;
 				for(int i = 0; i < paragraphs.size(); i++)
 					System.out.println("			Paragraph " + (paragraphs.get(i) + 1));
 			}
@@ -71,7 +78,8 @@ public class Program {
 		}
 		
 		reader.close();
-		System.out.println("Program ends!");
+		
+		System.out.println("\nProgram ends!");
 	}
 
 }
