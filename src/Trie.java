@@ -8,8 +8,9 @@ import java.util.Collections;
  */
 public class Trie
 {
-	public Node root = new Node();
+	public Node root = new Node();			//root of the trie
 	
+	//add a keyword and its paragraph number into the trie
 	public void addKeyword(String keyword, int parNumber)
 	{
 		Node parent = root;
@@ -19,22 +20,22 @@ public class Trie
 		    int charIndex = 0;
 		    while(charIndex <= parent.children.size() - 1)
 		    {
-		    	if(parent.children.get(charIndex).element == ch)
+		    	if(parent.children.get(charIndex).element == ch)	//if char is found
 		    		break;
-		    	else
+		    	else												//continue search for char
 		    		charIndex ++;
 		    }
-		    if(charIndex >= parent.children.size())
+		    if(charIndex >= parent.children.size())				//the char is not yet added
 		    	parent.children.add(new Node(ch));
-		    parent = parent.children.get(charIndex);
+		    parent = parent.children.get(charIndex);	//get the right parent node to continue search for next char
 		}
 		parent.isEnd = true;
-		if(parent.pars == null)
+		if(parent.pars == null)					//each external node contains an ArrayList to store paragraph numbers
 			parent.pars = new ArrayList<Integer>();
-		parent.pars.add(parNumber);
+		parent.pars.add(parNumber);				//add the paragraph number
 	}
 	
-
+	//search a keyword
 	public ArrayList<Integer> search(String kw)
 	{
 		Node currentNode = root;
@@ -51,15 +52,16 @@ public class Trie
 					break;
 				}
 			}
-			if(!found)
+			if(!found)					//return null if no keyword is found
 				return null;
 		}
-		if(!currentNode.isEnd)
+		if(!currentNode.isEnd)			//return null if keyword is only a prefix
 			return null;
 		else
-			return currentNode.pars;
+			return currentNode.pars;	//return the ArrayList that contains paragraph numbers
 	}
 	
+	//to handle input pattern like "a and b" or "a or b"
 	public ArrayList<Integer> handle2Keywords(String kws)
 	{
 		String[] list = cleanList(kws.split(" "));
@@ -67,9 +69,9 @@ public class Trie
 		ArrayList<Integer> para1 = search(list[0]);
 		ArrayList<Integer> para2 = search(list[2]);
 	
-		if(list[1].compareTo("and") == 0)
+		if(list[1].compareTo("and") == 0)				//pattern "a and b"
 			return and(para1, para2);
-		else if(list[1].compareTo("or") == 0)
+		else if(list[1].compareTo("or") == 0)			//pattern "a or b"
 			return or(para1, para2);
 		else
 		{
@@ -78,7 +80,7 @@ public class Trie
 		}
 	}
 	
-	private String[] cleanList(String[] old)
+	private String[] cleanList(String[] old)	//this method is to remove all " " elements in a string array 
 	{
 		ArrayList<String> temp = new ArrayList<String>(Arrays.asList(old));
 		//temp.removeAll(Collections.singleton(null));
@@ -92,14 +94,14 @@ public class Trie
 		return clean;
 	}
 	
-	public ArrayList<Integer> and(ArrayList<Integer> p1, ArrayList<Integer> p2)
+	public ArrayList<Integer> and(ArrayList<Integer> p1, ArrayList<Integer> p2)		//do the "and"
 	{
 		ArrayList<Integer> paras = new ArrayList<Integer>();
 		
-		if(p1 == null | p2 == null)
+		if(p1 == null | p2 == null)			//return null if either p1 or p2 is null
 			return null;
 		
-		for(int i = 0; i < p1.size(); i++)
+		for(int i = 0; i < p1.size(); i++) 		//only select elements that are both in p1 and p2
 		{
 			int temp = p1.get(i);
 			int index = 0;
@@ -113,15 +115,16 @@ public class Trie
 				index ++;
 			}
 		}
-		if(paras.isEmpty())
+		if(paras.isEmpty())		//return null if there is no intersection
 			return null;
 		return paras;
 	}
 	
-	public ArrayList<Integer> or(ArrayList<Integer> p1, ArrayList<Integer> p2)
+	public ArrayList<Integer> or(ArrayList<Integer> p1, ArrayList<Integer> p2) 		//do the "or"
 	{
 		ArrayList<Integer> paras = new ArrayList<Integer>();
 		
+		//return the other if one is null, else add all the elements that are in either p1 or p2
 		if(p1 == null)
 			return p2;
 		else if(p2 == null)
@@ -135,6 +138,7 @@ public class Trie
 		return paras;
 	}
 	
+	//to handle input that contains three keywords
 	public ArrayList<Integer> handle3Keywords(String kws)
 	{
 		ArrayList<Integer> para1, para2;
@@ -196,6 +200,9 @@ public class Trie
 		
 	}
 	
+	/**
+	 * Class implementing a node of trie
+	 */
 	class Node {
 		char element;
 		ArrayList<Node> children;

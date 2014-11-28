@@ -10,7 +10,7 @@ public class Program {
 		
 		IndexList indexList = new IndexList();
 		
-		Scanner reader = new Scanner(System.in);
+		Scanner reader = new Scanner(System.in);			//user input of a file location
 		
 		System.out.print("Program starts!"
 				+ "\n"
@@ -32,7 +32,7 @@ public class Program {
 		
 		System.out.print("...building trie...");
 		Trie trie = new Trie();
-		for(int i = 0; i <= index.size() - 1; i++)
+		for(int i = 0; i <= index.size() - 1; i++)		//add each pair of (keyword, paragraph number) to the trie
 		{
 			int j = 0;
 			while(j <= index.get(i).size() - 1)
@@ -50,24 +50,24 @@ public class Program {
 			System.out.println("\n-------------------------");
 			System.out.print("Enter keyword (press \"q\" to quit): ");
 			
-			String keyword = reader.nextLine().toLowerCase();
+			String keyword = reader.nextLine().toLowerCase();		//user input to search
 			if(keyword.equals("q"))
 				break;
 			
 			int num = keyword.split("and | or").length;
-			if(num == 1)								//one keyword
+			if(num == 1)									//one keyword
 				paragraphs = trie.search(keyword);
-			else if(num == 2)							//two keywords
+			else if(num == 2)								//two keywords
 			{
 				paragraphs = trie.handle2Keywords(keyword);
 			}
-			else										//three keywords
+			else											//three keywords
 			{
 				paragraphs = trie.handle3Keywords(keyword);
 			}
 			
 			
-			if(paragraphs != null)
+			if(paragraphs != null)							//display the result
 			{
 				System.out.println(keyword + " found in:");;
 				for(int i = 0; i < paragraphs.size(); i++)
